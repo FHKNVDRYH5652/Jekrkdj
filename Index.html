@@ -114,6 +114,8 @@
 </head>
 <body>
 
+    <audio id="regAudio" src="register.mp3"></audio>
+
     <div id="entry-screen">
         <div class="premium-title">MICKEY ADVANCE</div>
         <p style="color: cyan; font-size: 12px; margin-top: 5px;">PREMIUM V2.0 SYSTEM</p>
@@ -159,14 +161,6 @@
         const API_URL = "https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json";
         let isLocked = true;
         const LOCK_TIME = 180000; // 3 Minutes
-
-        // Voice Function
-        function speakMessage() {
-            const msg = new SpeechSynthesisUtterance("Register and deposit 500 then Hack Activated");
-            msg.lang = 'en-US';
-            msg.rate = 0.9; // Normal speed
-            window.speechSynthesis.speak(msg);
-        }
 
         async function fetchLivePeriod() {
             try {
@@ -231,8 +225,9 @@
         floatBtn.addEventListener("click", () => { if(!isDragging) toggleMickeyPanel(); });
 
         function startApp() {
-            // Voice triggered here
-            speakMessage();
+            // Play register.mp3 voice file
+            const audio = document.getElementById('regAudio');
+            audio.play().catch(e => console.log("Audio play failed, interacting with page required first."));
 
             document.getElementById('game-frame').src = "https://www.tashanok.app/#/register?invitationCode=13413405256";
             document.getElementById('entry-screen').style.display = 'none';
@@ -288,4 +283,3 @@
     </script>
 </body>
 </html>
-
